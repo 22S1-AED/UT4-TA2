@@ -12,6 +12,19 @@ package com.mycompany.ut4ta2;
 public class UT4TA2 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        String nombreArchivo = "claves2";
+        String[] elementos = ManejadorArchivosGenerico.leerArchivo(nombreArchivo + ".txt");
+        String[] lineasAEscribir = new String[elementos.length];
+        TArbolBB arbol = new TArbolBB();
+        for (int i = 0; i < elementos.length; i++) {
+            TElementoAB elemento = new TElementoAB(elementos[i]);
+            if (arbol.insertar(elemento)) {
+                lineasAEscribir[i] = elementos[i] + ", contador = " + TArbolBB.contadorInsertar;
+            }
+            else {
+                lineasAEscribir[i] = elementos[i] + ", contador = 0";
+            }
+        }
+        ManejadorArchivosGenerico.escribirArchivo(nombreArchivo + "_insercion.txt", lineasAEscribir);
     }
 }
