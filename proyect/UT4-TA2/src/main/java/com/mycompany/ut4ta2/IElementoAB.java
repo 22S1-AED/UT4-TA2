@@ -44,9 +44,10 @@ public interface IElementoAB<T> {
      * @return Elemento encontrado. En caso de no encontrarlo, retorna nulo.
      */
     public TElementoAB<T> buscar(Comparable unaEtiqueta);
+    
+    public TElementoAB<T> buscar(Comparable unaEtiqueta, int[] cont);
 
  
-
     /**
      * Inserta un elemento dentro del arbol.
      *

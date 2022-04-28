@@ -5,6 +5,8 @@
 
 package com.mycompany.ut4ta2;
 
+import static ut5.ta2.ManejadorArchivosGenerico.leerArchivo;
+
 /**
  *
  * @author rodri
@@ -12,6 +14,7 @@ package com.mycompany.ut4ta2;
 public class UT4TA2 {
 
     public static void main(String[] args) {
+      
         String nombreArchivo = "claves2";
         String[] elementos = ManejadorArchivosGenerico.leerArchivo(nombreArchivo + ".txt");
         String[] lineasAEscribir = new String[elementos.length];
@@ -26,5 +29,8 @@ public class UT4TA2 {
             }
         }
         ManejadorArchivosGenerico.escribirArchivo(nombreArchivo + "_insercion.txt", lineasAEscribir);
+
+      String[] consultas = leerArchivo("src/consultaPrueba.txt");
+        System.out.println(consultas.length);
     }
 }
