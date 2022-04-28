@@ -8,7 +8,13 @@ package com.mycompany.ut4ta2;
  *
  * @author rodri
  */
-public class TArbolBB implements IArbolBB {
+public class TArbolBB<T> implements IArbolBB {
+
+    TElementoAB<T> raiz;
+
+    public TArbolBB() {
+        raiz = null;
+    }
 
     @Override
     public boolean insertar(TElementoAB unElemento) {
@@ -17,7 +23,17 @@ public class TArbolBB implements IArbolBB {
 
     @Override
     public TElementoAB buscar(Comparable unaEtiqueta) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int[] dummyCont = new int[] {0};
+        return this.buscar(unaEtiqueta, dummyCont);
+    }
+    
+    public TElementoAB buscar(Comparable unaEtiqueta, int[] cont) {
+        if (esVacio()) {
+            return null;
+        } else {
+            cont[0]++;
+            return raiz.buscar(unaEtiqueta, cont);
+        }
     }
 
     @Override
@@ -32,12 +48,16 @@ public class TArbolBB implements IArbolBB {
 
     @Override
     public String postOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "";
     }
 
     @Override
     public void eliminar(Comparable unaEtiqueta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public boolean esVacio() {
+        return raiz == null;
     }
     
 }
