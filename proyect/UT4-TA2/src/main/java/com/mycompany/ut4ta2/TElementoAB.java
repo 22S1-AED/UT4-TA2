@@ -157,4 +157,14 @@ class TElementoAB<T> implements IElementoAB<T>{
         return this.contadorInt;
     }
 
+    @Override
+    public int obtenerTamaño() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int obtenerAltura() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

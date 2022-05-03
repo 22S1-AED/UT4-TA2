@@ -51,6 +51,18 @@ public interface IArbolBB<T> {
      * @param unaEtiqueta 
      */
     public void eliminar(Comparable unaEtiqueta);
+    
+    /**
+     * Calcula el tamaño del arbol
+     * @return tamaño
+     */
+    public int obtenerTamaño();
+    
+    /**
+     * Calcula la altura del arbol
+     * @return altura
+     */
+    public int obtenerAltura();
 
 	
 	
