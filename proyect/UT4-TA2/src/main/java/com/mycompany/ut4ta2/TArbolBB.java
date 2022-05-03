@@ -8,10 +8,9 @@ package com.mycompany.ut4ta2;
  *
  * @author rodri
  */
-public class TArbolBB implements IArbolBB {
-    public static int contadorInsertar = 0;
-
-    TElementoAB<T> raiz;
+public class TArbolBB<T> implements IArbolBB<T> {
+    private TElementoAB<T> raiz;
+    private int contador;
 
     public TArbolBB() {
         raiz = null;
@@ -19,15 +18,16 @@ public class TArbolBB implements IArbolBB {
 
     @Override
     public boolean insertar(TElementoAB unElemento) {
-        contadorInsertar = 0;
+        this.contador = 0;
+        
         if (raiz == null) {
             raiz = unElemento;
             return true;
         }
         else {
-            boolean resultado = raiz.insertar(unElemento);
-            System.out.println("Veces recurisividad: " + contadorInsertar);
-            return resultado;
+            boolean insertarOk = raiz.insertar(unElemento);
+            this.contador = raiz.getContador();
+            return insertarOk;
         }
     }
 
@@ -48,17 +48,17 @@ public class TArbolBB implements IArbolBB {
 
     @Override
     public String preOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.raiz.preOrden();
     }
 
     @Override
     public String inOrden() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return this.raiz.inOrden();
     }
 
     @Override
     public String postOrden() {
-        return "";
+        return this.raiz.postOrden();
     }
 
     @Override
@@ -68,6 +68,10 @@ public class TArbolBB implements IArbolBB {
     
     public boolean esVacio() {
         return raiz == null;
+    }
+    
+    public int getContador() {
+        return this.contador;
     }
     
 }

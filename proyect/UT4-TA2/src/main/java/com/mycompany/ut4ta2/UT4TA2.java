@@ -5,8 +5,6 @@
 
 package com.mycompany.ut4ta2;
 
-import static ut5.ta2.ManejadorArchivosGenerico.leerArchivo;
-
 /**
  *
  * @author rodri
@@ -22,15 +20,16 @@ public class UT4TA2 {
         for (int i = 0; i < elementos.length; i++) {
             TElementoAB elemento = new TElementoAB(elementos[i]);
             if (arbol.insertar(elemento)) {
-                lineasAEscribir[i] = elementos[i] + ", contador = " + TArbolBB.contadorInsertar;
+                lineasAEscribir[i] = elementos[i] + ", contador = " + arbol.getContador();
             }
             else {
                 lineasAEscribir[i] = elementos[i] + ", contador = 0";
             }
         }
         ManejadorArchivosGenerico.escribirArchivo(nombreArchivo + "_insercion.txt", lineasAEscribir);
+        System.out.println(arbol.postOrden());
 
-      String[] consultas = leerArchivo("src/consultaPrueba.txt");
+      String[] consultas = ManejadorArchivosGenerico.leerArchivo("src/consultaPrueba.txt");
         System.out.println(consultas.length);
     }
 }
