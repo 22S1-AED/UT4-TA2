@@ -90,7 +90,7 @@ class TElementoAB<T> implements IElementoAB<T>{
         if (this.etiqueta.compareTo(elemento.etiqueta) == 0) {
             return false;
         }
-        else if (this.etiqueta.compareTo(elemento.etiqueta) > 0) {
+        else if (this.etiqueta.compareTo(elemento.etiqueta) < 0) {
             if (this.hijoDer == null) {
                 this.hijoDer = elemento;
                 return true;

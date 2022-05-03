@@ -9,6 +9,7 @@ package com.mycompany.ut4ta2;
  * @author rodri
  */
 public class TArbolBB<T> implements IArbolBB<T> {
+
     private TElementoAB<T> raiz;
     private int contador;
 
@@ -19,12 +20,11 @@ public class TArbolBB<T> implements IArbolBB<T> {
     @Override
     public boolean insertar(TElementoAB unElemento) {
         this.contador = 0;
-        
+
         if (raiz == null) {
             raiz = unElemento;
             return true;
-        }
-        else {
+        } else {
             boolean insertarOk = raiz.insertar(unElemento);
             this.contador = raiz.getContador();
             return insertarOk;
@@ -33,10 +33,10 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public TElementoAB buscar(Comparable unaEtiqueta) {
-        int[] dummyCont = new int[] {0};
+        int[] dummyCont = new int[]{0};
         return this.buscar(unaEtiqueta, dummyCont);
     }
-    
+
     public TElementoAB buscar(Comparable unaEtiqueta, int[] cont) {
         if (esVacio()) {
             return null;
@@ -53,7 +53,11 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String inOrden() {
-        return this.raiz.inOrden();
+        if (esVacio()) {
+            return "";
+        } else {
+            return this.raiz.inOrden();
+        }
     }
 
     @Override
@@ -65,13 +69,13 @@ public class TArbolBB<T> implements IArbolBB<T> {
     public void eliminar(Comparable unaEtiqueta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public boolean esVacio() {
         return raiz == null;
     }
-    
+
     public int getContador() {
         return this.contador;
     }
-    
+
 }
