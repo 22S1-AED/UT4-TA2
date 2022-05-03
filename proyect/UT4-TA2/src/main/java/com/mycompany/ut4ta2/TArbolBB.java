@@ -8,7 +8,8 @@ package com.mycompany.ut4ta2;
  *
  * @author rodri
  */
-public class TArbolBB<T> implements IArbolBB {
+public class TArbolBB implements IArbolBB {
+    public static int contadorInsertar = 0;
 
     TElementoAB<T> raiz;
 
@@ -18,7 +19,16 @@ public class TArbolBB<T> implements IArbolBB {
 
     @Override
     public boolean insertar(TElementoAB unElemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        contadorInsertar = 0;
+        if (raiz == null) {
+            raiz = unElemento;
+            return true;
+        }
+        else {
+            boolean resultado = raiz.insertar(unElemento);
+            System.out.println("Veces recurisividad: " + contadorInsertar);
+            return resultado;
+        }
     }
 
     @Override

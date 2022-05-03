@@ -14,7 +14,23 @@ import static ut5.ta2.ManejadorArchivosGenerico.leerArchivo;
 public class UT4TA2 {
 
     public static void main(String[] args) {
-        String[] consultas = leerArchivo("src/consultaPrueba.txt");
+      
+        String nombreArchivo = "claves2";
+        String[] elementos = ManejadorArchivosGenerico.leerArchivo(nombreArchivo + ".txt");
+        String[] lineasAEscribir = new String[elementos.length];
+        TArbolBB arbol = new TArbolBB();
+        for (int i = 0; i < elementos.length; i++) {
+            TElementoAB elemento = new TElementoAB(elementos[i]);
+            if (arbol.insertar(elemento)) {
+                lineasAEscribir[i] = elementos[i] + ", contador = " + TArbolBB.contadorInsertar;
+            }
+            else {
+                lineasAEscribir[i] = elementos[i] + ", contador = 0";
+            }
+        }
+        ManejadorArchivosGenerico.escribirArchivo(nombreArchivo + "_insercion.txt", lineasAEscribir);
+
+      String[] consultas = leerArchivo("src/consultaPrueba.txt");
         System.out.println(consultas.length);
     }
 }

@@ -8,11 +8,15 @@ package com.mycompany.ut4ta2;
  *
  * @author rodri
  */
-class TElementoAB<T> implements IElementoAB<T> {
-
-    private TElementoAB Hijoizq;
-    private TElementoAB Hijoder;
-    private Comparable Etiqueta;
+class TElementoAB<T> implements IElementoAB<T>{
+    private Comparable etiqueta;
+    private TElementoAB<T> hijoIzq;
+    private TElementoAB<T> hijoDer;
+    
+    public TElementoAB(Comparable etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+    
     private T Dato;
 
     public TElementoAB(Comparable etiqueta, T dato) {
@@ -21,7 +25,7 @@ class TElementoAB<T> implements IElementoAB<T> {
         this.Etiqueta = etiqueta;
         this.Dato = dato;
     }
-
+    
     @Override
     public Comparable getEtiqueta() {
         return this.Etiqueta;
@@ -74,7 +78,28 @@ class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public boolean insertar(TElementoAB<T> elemento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        TArbolBB.contadorInsertar++;
+        if (this.etiqueta.compareTo(elemento.etiqueta) == 0) {
+            return false;
+        }
+        else if (this.etiqueta.compareTo(elemento.etiqueta) > 0) {
+            if (this.hijoDer == null) {
+                this.hijoDer = elemento;
+                return true;
+            }
+            else {
+                return this.hijoDer.insertar(elemento);
+            }
+        }
+        else {
+            if (this.hijoIzq == null) {
+                this.hijoIzq = elemento;
+                return true;
+            }
+            else {
+                return this.hijoIzq.insertar(elemento);
+            }
+        }
     }
 
     @Override
