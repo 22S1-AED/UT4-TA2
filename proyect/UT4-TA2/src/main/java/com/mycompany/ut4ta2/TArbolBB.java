@@ -80,7 +80,11 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public int obtenerTamaño() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this.raiz != null) {
+            return raiz.obtenerTamaño();
+        } else {
+            return 0;
+        }
     }
 
     /**
