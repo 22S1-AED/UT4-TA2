@@ -83,9 +83,18 @@ public class TArbolBB<T> implements IArbolBB<T> {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    /**
+     * Retorna la altura del arbol
+     * Por convencion, un arbol vacio tiene altura 0, y un arbol
+     * con un elemento tiene altura 1.
+     * @return 
+     */
     @Override
     public int obtenerAltura() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       if (this.raiz == null)
+            return 0;
+        
+        return this.raiz.obtenerAltura();
     }
 
 }
