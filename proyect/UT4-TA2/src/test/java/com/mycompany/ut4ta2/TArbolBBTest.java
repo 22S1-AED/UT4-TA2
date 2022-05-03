@@ -44,6 +44,6 @@ public class TArbolBBTest {
         
         int exp = 3;
 
-        assertEquals(exp, arbol.inOrden());
+        assertEquals(exp, arbol.obtenerTamaño());
     }
 }

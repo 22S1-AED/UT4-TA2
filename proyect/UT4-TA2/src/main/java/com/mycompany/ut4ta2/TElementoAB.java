@@ -8,23 +8,23 @@ package com.mycompany.ut4ta2;
  *
  * @author rodri
  */
-class TElementoAB<T> implements IElementoAB<T>{
+class TElementoAB<T> implements IElementoAB<T> {
+
     private Comparable etiqueta;
     private TElementoAB<T> hijoIzq;
     private TElementoAB<T> hijoDer;
     private T dato;
     private int contadorInt;
-    
+
     public TElementoAB(Comparable etiqueta) {
         this.etiqueta = etiqueta;
     }
-    
 
     public TElementoAB(Comparable etiqueta, T dato) {
         this.etiqueta = etiqueta;
         this.dato = dato;
     }
-    
+
     @Override
     public Comparable getEtiqueta() {
         return this.etiqueta;
@@ -52,12 +52,12 @@ class TElementoAB<T> implements IElementoAB<T>{
 
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-        int[] dummyCont = new int[] {0};
+        int[] dummyCont = new int[]{0};
         TElementoAB<T> elemento = this.buscar(unaEtiqueta, dummyCont);
         this.contadorInt = dummyCont[0];
         return elemento;
     }
-    
+
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta, int[] cont) {
         TElementoAB result = this;
@@ -79,7 +79,7 @@ class TElementoAB<T> implements IElementoAB<T>{
 
     @Override
     public boolean insertar(TElementoAB<T> elemento) {
-        int[] contador = new int[] {0};
+        int[] contador = new int[]{0};
         boolean insertarOk = this.insertar(elemento, contador);
         this.contadorInt = contador[0];
         return insertarOk;
@@ -89,22 +89,18 @@ class TElementoAB<T> implements IElementoAB<T>{
         contador[0]++;
         if (this.etiqueta.compareTo(elemento.etiqueta) == 0) {
             return false;
-        }
-        else if (this.etiqueta.compareTo(elemento.etiqueta) < 0) {
+        } else if (this.etiqueta.compareTo(elemento.etiqueta) < 0) {
             if (this.hijoDer == null) {
                 this.hijoDer = elemento;
                 return true;
-            }
-            else {
+            } else {
                 return this.hijoDer.insertar(elemento, contador);
             }
-        }
-        else {
+        } else {
             if (this.hijoIzq == null) {
                 this.hijoIzq = elemento;
                 return true;
-            }
-            else {
+            } else {
                 return this.hijoIzq.insertar(elemento, contador);
             }
         }
@@ -114,31 +110,37 @@ class TElementoAB<T> implements IElementoAB<T>{
     public String preOrden() {
         StringBuilder sb = new StringBuilder();
         sb.append(this.etiqueta + "\n");
-        if (this.hijoIzq != null)
+        if (this.hijoIzq != null) {
             sb.append(this.hijoIzq.preOrden());
-        if (this.hijoDer != null)
+        }
+        if (this.hijoDer != null) {
             sb.append(this.hijoDer.preOrden());
+        }
         return sb.toString();
     }
 
     @Override
     public String inOrden() {
         StringBuilder sb = new StringBuilder();
-        if (this.hijoIzq != null)
+        if (this.hijoIzq != null) {
             sb.append(this.hijoIzq.preOrden());
+        }
         sb.append(this.etiqueta + "\n");
-        if (this.hijoDer != null)
+        if (this.hijoDer != null) {
             sb.append(this.hijoDer.preOrden());
+        }
         return sb.toString();
     }
 
     @Override
     public String postOrden() {
         StringBuilder sb = new StringBuilder();
-        if (this.hijoIzq != null)
+        if (this.hijoIzq != null) {
             sb.append(this.hijoIzq.preOrden());
-        if (this.hijoDer != null)
+        }
+        if (this.hijoDer != null) {
             sb.append(this.hijoDer.preOrden());
+        }
         sb.append(this.etiqueta + "\n");
         return sb.toString();
     }
@@ -152,14 +154,24 @@ class TElementoAB<T> implements IElementoAB<T>{
     public TElementoAB eliminar(Comparable unaEtiqueta) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
     public int getContador() {
         return this.contadorInt;
     }
 
     @Override
     public int obtenerTamaño() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (this == null) {
+            return 0;
+        } else if (hijoIzq != null && hijoDer != null) {
+            return 1 + hijoIzq.obtenerTamaño() + hijoDer.obtenerTamaño();
+        } else if (hijoIzq == null && hijoDer != null) {
+            return 1 + hijoDer.obtenerTamaño();
+        } else if (hijoDer == null && hijoIzq != null) {
+            return 1 + hijoIzq.obtenerTamaño();
+        } else {
+            return 1;
+        }
     }
 
     @Override
